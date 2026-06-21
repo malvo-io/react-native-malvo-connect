@@ -22,8 +22,7 @@ const TypedWebView = WebView as unknown as ComponentType<
 
 /**
  * Renders the hosted Malvo Connect widget in a `react-native-webview` and
- * bridges its `postMessage` events to your callbacks — the drop-in equivalent
- * of `react-native-pluggy-connect`'s `PluggyConnect`.
+ * bridges its `postMessage` events to your callbacks.
  *
  * The hosted widget posts every `malvo:*` event to
  * `window.ReactNativeWebView.postMessage`, surfaced here through `onMessage`.

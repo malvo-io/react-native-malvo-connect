@@ -6,4 +6,3 @@
   `malvo:close` events to `onSuccess` / `onError` / `onClose` / `onEvent`.
 - Open Finance OAuth runs in-WebView by default, with optional external-browser
   + deep-link return via `oauthRedirectScheme`.
-- API mirrors `react-native-pluggy-connect`.

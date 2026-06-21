@@ -1,9 +1,7 @@
 # react-native-malvo-connect
 
 React Native component for the **hosted Malvo Connect widget** (Open Finance
-Brasil) — a drop-in equivalent of
-[`react-native-pluggy-connect`](https://www.npmjs.com/package/react-native-pluggy-connect),
-talking to your own Malvo API.
+Brasil), talking to your own Malvo API.
 
 It wraps the hosted widget (`{baseUrl}/connect?token=...`) in a
 [`react-native-webview`](https://github.com/react-native-webview/react-native-webview)
@@ -71,4 +69,4 @@ On the deep-link return the WebView re-loads `/connect/finish` and resumes.
 | `updateItem` | `string` | Item id for an update flow. |
 | `connectorTypes` / `connectorIds` / `countries` / `language` / `selectedConnectorId` | — | Filtering / UX hints. |
 | `oauthRedirectScheme` | `string` | Custom scheme for external-browser OAuth deep-link return. |
-| `onSuccess` / `onError` / `onOpen` / `onClose` / `onEvent` | callbacks | Mirror `react-native-pluggy-connect`. |
+| `onSuccess` / `onError` / `onOpen` / `onClose` / `onEvent` | callbacks | Widget lifecycle callbacks. |

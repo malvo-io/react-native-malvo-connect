@@ -1,4 +1,4 @@
-# react-native-malvo-connect
+# @malvo/react-native-connect
 
 React Native component for the **hosted Malvo Connect widget** (Open Finance
 Brasil), talking to your own Malvo API.
@@ -10,7 +10,7 @@ and bridges its `postMessage` events to your callbacks.
 ## Install
 
 ```bash
-npm install react-native-malvo-connect react-native-webview
+npm install @malvo/react-native-connect react-native-webview
 ```
 
 Follow `react-native-webview`'s platform setup (pods on iOS). `react-native` and
@@ -23,7 +23,7 @@ The only required input is a **Connect Token** minted by *your* backend
 
 ```tsx
 import { Modal } from "react-native";
-import { MalvoConnect } from "react-native-malvo-connect";
+import { MalvoConnect } from "@malvo/react-native-connect";
 
 function ConnectModal({ token, visible, onClose }: Props) {
   return (

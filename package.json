@@ -1,6 +1,6 @@
 {
   "name": "@malvo/react-native-connect",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "React Native component for the hosted Malvo Connect widget (Open Finance Brasil) — link bank accounts via your own Malvo API.",
   "license": "MIT",
   "publishConfig": {

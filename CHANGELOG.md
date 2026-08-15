@@ -1,3 +1,9 @@
+## 0.3.0
+
+- Add `MalvoFidoAuthenticator` — extension point for the no-redirection (JSR)
+  payment journey. Implement it with your passkey library to run the on-device
+  WebAuthn ceremonies; the SDK bundles no passkey dependency.
+
 ## 0.2.0
 
 - Add `openPaymentAuthorization(authorizationUrl)` — open a Pix payment

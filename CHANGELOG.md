@@ -1,3 +1,10 @@
+## 0.2.0
+
+- Add `openPaymentAuthorization(authorizationUrl)` — open a Pix payment
+  initiation's authorization page in the system browser. The redirection payment
+  journey is not rendered in the Connect WebView (banks block embedding). Pair it
+  with `createPaymentInitiation` in `@malvo/server`.
+
 ## 0.1.0
 
 - Initial release.

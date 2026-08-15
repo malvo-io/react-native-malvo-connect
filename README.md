@@ -47,6 +47,27 @@ function ConnectModal({ token, visible, onClose }: Props) {
 > **Webhooks are the source of truth.** `onSuccess` is best-effort UX. Persist
 > connections from the `item/created` / `item/updated` webhooks on your backend.
 
+## Payments (Pix)
+
+The Connect widget authorizes **data** consent. **Payment initiation** (Pix /
+ITP) with redirection sends the payer to their own bank, which blocks embedding —
+so it opens the system browser, not the WebView.
+
+Create the initiation on your backend (`createPaymentInitiation` in
+[`@malvo/server`](https://www.npmjs.com/package/@malvo/server)), then open the
+returned `authorizationUrl`:
+
+```tsx
+import { openPaymentAuthorization } from "@malvo/react-native-connect";
+
+// authorizationUrl comes from your backend's createPaymentInitiation(...)
+await openPaymentAuthorization(authorizationUrl);
+```
+
+After the payer authorizes and returns to your `redirectUrl` (deep link),
+execute and reconcile the Pix from your backend. See the
+[Pix payments guide](https://docs.malvo.io/guides/pix-payments).
+
 ## Open Finance / OAuth
 
 By default the bank consent runs **inside the WebView** and resumes

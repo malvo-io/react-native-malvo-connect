@@ -47,6 +47,48 @@ function ConnectModal({ token, visible, onClose }: Props) {
 > **Webhooks are the source of truth.** `onSuccess` is best-effort UX. Persist
 > connections from the `item/created` / `item/updated` webhooks on your backend.
 
+## Payments (Pix)
+
+The Connect widget authorizes **data** consent. **Payment initiation** (Pix /
+ITP) with redirection sends the payer to their own bank, which blocks embedding —
+so it opens the system browser, not the WebView.
+
+Create the initiation on your backend (`createPaymentInitiation` in
+[`@malvo/server`](https://www.npmjs.com/package/@malvo/server)), then open the
+returned `authorizationUrl`:
+
+```tsx
+import { openPaymentAuthorization } from "@malvo/react-native-connect";
+
+// authorizationUrl comes from your backend's createPaymentInitiation(...)
+await openPaymentAuthorization(authorizationUrl);
+```
+
+After the payer authorizes and returns to your `redirectUrl` (deep link),
+execute and reconcile the Pix from your backend. See the
+[Pix payments guide](https://docs.malvo.io/guides/pix-payments).
+
+### No-redirection (FIDO)
+
+For the JSR journey the payer authorizes with biometrics on-device. This SDK
+exposes the extension point `MalvoFidoAuthenticator` — implement it with your
+passkey library (e.g. `react-native-passkey`); the SDK does not bundle one, so
+you own the authenticator and the associated-domains configuration for the
+Malvo/Celcoin relying party.
+
+```ts
+import type { MalvoFidoAuthenticator } from "@malvo/react-native-connect";
+
+const authenticator: MalvoFidoAuthenticator = {
+  createCredential: (options) => passkey.register(options), // your passkey lib
+  getAssertion: (options) => passkey.authenticate(options),
+};
+```
+
+The backend steps (`createEnrollment`, `fidoRegistration`, `authoriseFido`,
+`executePixV4`, …) run on your server via `@malvo/server`; the authenticator is
+called between them to run the two WebAuthn ceremonies.
+
 ## Open Finance / OAuth
 
 By default the bank consent runs **inside the WebView** and resumes
